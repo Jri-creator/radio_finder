@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Finder</title>
+</head>
+<body style="font-family: Arial; text-align: center;">
+    <h1>Radio Stations</h1>
+
+    <button id="radio1Btn" disabled>Listen to Jri Radio</button>
+    <button id="radio2Btn" disabled>Listen to Jri Radio 2</button>
+
+    <script>
+        // Function to check if a file exists
+        async function checkFileExists(filePath) {
+            try {
+                const response = await fetch(filePath);
+                return response.ok;
+            } catch (error) {
+                console.error('Error checking file:', error);
+                return false;
+            }
+        }
+
+        // Function to unlock buttons based on file presence
+        async function unlockButtons() {
+            const radio1Path = '/web_radio/Imhere.txt';
+            const radio2Path = '/web_radio_2/Imhere.txt';
+
+            // Check if files exist
+            const radio1Exists = await checkFileExists(radio1Path);
+            const radio2Exists = await checkFileExists(radio2Path);
+
+            // Unlock buttons if files are found
+            if (radio1Exists) {
+                document.getElementById('radio1Btn').disabled = false;
+            }
+            if (radio2Exists) {
+                document.getElementById('radio2Btn').disabled = false;
+            }
+        }
+
+        // Call the function to check and unlock buttons
+        unlockButtons();
+    </script>
+</body>
+</html>
