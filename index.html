@@ -6,11 +6,14 @@
     <title>Radio Finder</title>
 </head>
 <body style="font-family: Arial; text-align: center;">
-    <h1>Radio Stations</h1>
+    <h1 style="border-bottom: solid red 5px;">Radio Stations</h1>
 
     <button id="radio1Btn" disabled>Listen to Jri Radio</button>
+    <br>
     <button id="radio2Btn" disabled>Listen to Jri Radio 2</button>
-
+    <br>
+    <button id="radio3Btn" disabled>Listen to TCTC Radio</button>
+    
     <script>
         // Function to check if a file exists
         async function checkFileExists(filePath) {
@@ -27,10 +30,12 @@
         async function unlockButtons() {
             const radio1Path = '/web_radio/Imhere.txt';
             const radio2Path = '/web_radio_2/Imhere.txt';
+            const radio3Path = '/tctc_radio/Imhere.txt';
 
             // Check if files exist
             const radio1Exists = await checkFileExists(radio1Path);
             const radio2Exists = await checkFileExists(radio2Path);
+            const radio3Exists = await checkFileExists(radio3Path);
 
             // Unlock buttons if files are found
             if (radio1Exists) {
@@ -38,6 +43,9 @@
             }
             if (radio2Exists) {
                 document.getElementById('radio2Btn').disabled = false;
+            }
+            if (radio3Exists) {
+                document.getElementById('radio3Btn').disabled = false;
             }
         }
 
